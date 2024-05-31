@@ -33,7 +33,7 @@ class _loginpageState extends State<loginpage> {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 20.0),
-                    padding: ,
+                    padding:ed ,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),

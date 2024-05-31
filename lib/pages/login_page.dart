@@ -44,7 +44,7 @@ class _loginpageState extends State<loginpage> {
                       children: [
                         TextField(
                           decoration: InputDecoration(
-                            hintText: 'Email',
+                            hintText: 'Username',
                             hintStyle: GoogleFonts.poppins(color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),

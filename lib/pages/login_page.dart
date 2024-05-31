@@ -31,10 +31,14 @@ class _loginpageState extends State<loginpage> {
                         fontSize: 33,
                         color: Color(0xffF4ECF7)),
                   ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20.0),
+                    padding: ,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      'ss.',
+                      '',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,

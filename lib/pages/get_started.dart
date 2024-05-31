@@ -13,6 +13,10 @@ class GetStarted extends StatefulWidget {
 }
 
 class _GetStartedState extends State<GetStarted> {
+  void getstarted() {
+    Navigator.pushNamed(context, '/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,11 +44,11 @@ class _GetStartedState extends State<GetStarted> {
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
                         color: Color(0xffF4ECF7),
-                       
-                      ), textAlign: TextAlign.center,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  MyButton(onTap: (){}, text: 'Get Started')
+                  MyButton(onTap: getstarted, text: 'Get Started')
                 ],
               ),
             ),

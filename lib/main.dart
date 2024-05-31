@@ -1,4 +1,5 @@
 import 'package:aspire_arc/pages/get_started.dart';
+import 'package:aspire_arc/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
   home: GetStarted(),
+  routes: {
+    '/getstarted': (context) => GetStarted(),
+    '/login':(context)=>loginpage(),
+  },
     );
   }
 }

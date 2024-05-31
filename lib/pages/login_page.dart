@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:aspire_arc/components/bgimage.dart';
+import 'package:aspire_arc/components/button.dart'; // Import the custom button
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,28 +22,113 @@ class _loginpageState extends State<loginpage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 250.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'LOGIN',
+                    'SIGN IN',
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 33,
-                        color: Color(0xffF4ECF7)),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 33,
+                      color: Color.fromARGB(255, 168, 5, 227),
+                    ),
                   ),
+                  SizedBox(height: 20),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
-                    padding:ed ,
+                    padding: EdgeInsets.all(20),
+                    margin: EdgeInsets.symmetric(horizontal: 40),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Column(
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Email',
+                            hintStyle: GoogleFonts.poppins(color: Colors.white),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(height: 20), // Space between email and password fields
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            hintStyle: GoogleFonts.poppins(color: Colors.white),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(height: 20), 
+                        MyButton(
+                          onTap: () {
+                            
+                          },
+                          text: 'Sign In',
+                        ),
+                        SizedBox(height: 10), 
+                        GestureDetector(
+                          onTap: () {
+                            
+                          },
+                          child: Text(
+                            "Don't have an account? Sign up",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
                       '',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        color: Color(0xffF4ECF7),
-                       
-                      ), textAlign: TextAlign.center,
+                        fontSize: 30,
+                        color: Color.fromARGB(255, 155, 76, 184),
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],

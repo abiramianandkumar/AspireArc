@@ -1,6 +1,7 @@
 import 'package:aspire_arc/pages/get_started.dart';
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';
+import 'package:aspire_arc/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-  home: HomePage(),
+ // home: HomePage(),
+  home: SignUp(),
   routes: {
     '/getstarted': (context) => GetStarted(),
     '/login':(context) => loginpage(),

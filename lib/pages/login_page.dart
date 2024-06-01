@@ -1,138 +1,82 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:aspire_arc/components/bgimage.dart';
-import 'package:aspire_arc/components/button.dart'; 
+import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class loginpage extends StatefulWidget {
-  loginpage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<loginpage> createState() => _loginpageState();
+  State<LoginPage> createState() => _loginpageState();
 }
 
-class _loginpageState extends State<loginpage> {
+class _loginpageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundImage(),
+        BackgroundImage(), // Ensure this component is not null
         Scaffold(
           backgroundColor: Colors.transparent,
-          
           body: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 250.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'SIGN IN',
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 33,
-                      color: Color.fromARGB(255, 168, 5, 227),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    margin: EdgeInsets.symmetric(horizontal: 40),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Username',
-                            hintStyle: GoogleFonts.poppins(color: Colors.white),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white.withOpacity(1),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(height: 20), 
-                        TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            hintStyle: GoogleFonts.poppins(color: Colors.white),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(height: 20), 
-                        MyButton(
-                          onTap: () {
-                            
-                          },
-                          text: 'Sign In',
-                        ),
-                        SizedBox(height: 10), 
-                        GestureDetector(
-                          onTap: () {
-                            
-                          },
-                          child: Text(
-                            "Don't have an account? Sign up",
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      '',
+            child: SingleChildScrollView( // Added SingleChildScrollView to prevent overflow
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 150), // Adjusted top padding
+                    Text(
+                      'SIGN IN',
                       style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 30,
-                        color: Color.fromARGB(255, 155, 76, 184),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 33,
+                        color: Colors.deepPurple,
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextField(
+                            decoration: InputDecoration(
+                              label: Text(
+                                'Username',
+                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.check, color: Colors.blue),
+                              label: Text(
+                                'Password',
+                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          MyButton(
+                            onTap: () {
+                              // Add your sign-up logic here
+                            },
+                            text: 'Sign Up',
+                          ),
+                          SizedBox(height: 20), // Adjusted spacing after the button
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:aspire_arc/components/bgimage.dart';
-import 'package:aspire_arc/components/button.dart'; // Import the custom button
+import 'package:aspire_arc/components/button.dart'; 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,6 +18,7 @@ class _loginpageState extends State<loginpage> {
         BackgroundImage(),
         Scaffold(
           backgroundColor: Colors.transparent,
+          
           body: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 250.0),
@@ -49,13 +50,13 @@ class _loginpageState extends State<loginpage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white,
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withOpacity(1),
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -67,7 +68,7 @@ class _loginpageState extends State<loginpage> {
                           ),
                           style: TextStyle(color: Colors.white),
                         ),
-                        SizedBox(height: 20), // Space between email and password fields
+                        SizedBox(height: 20), 
                         TextField(
                           obscureText: true,
                           decoration: InputDecoration(

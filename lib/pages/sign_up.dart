@@ -36,30 +36,53 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.deepPurple,
                     ),
                     ),
+                    SizedBox(height: 20),
                     Container(
-                      padding: EdgeInsets.all(23),
-                    //  margin: EdgeInsets.symmetric(horizontal: 30),
-                      decoration:BoxDecoration( 
-                       color: Colors.transparent,
-                      borderRadius:BorderRadius.circular(15),
-                      ),
+                       padding: const EdgeInsets.only(left: 18.0,right: 18),
+                      margin: EdgeInsets.symmetric(horizontal: 50),
+                      decoration: BoxDecoration(),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextField(
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius: BorderRadius.circular(15),
-                                
-
-                              ),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                              hintText: 'dfgg'
+                           decoration: InputDecoration(
+                              
+                              label: Text('Username',style: TextStyle(fontSize:20,color: Colors.white),),
                             ),
                             
                           ),
-                          TextField(),
+                          SizedBox(height: 30),
+                          TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.email,color: Colors.blue,),
+                              label: Text('Email',style: TextStyle(fontSize:20,color: Colors.white),),
+                            ),
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.check,color: Colors.blue,),
+                              label: Text('Create password',style: TextStyle(fontSize:20,color: Colors.white),),
+                            ),
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.check,color: Colors.blue,),
+                              label: Text('Confirm password',style: TextStyle(fontSize:20,color: Colors.white),),
+                           ),
+                          ),
+                           SizedBox(height: 20), 
+                        MyButton(
+                          onTap: () {
+                            
+                          },
+                          text: 'Sign In',
+                        ),
+                        SizedBox(height: 10), 
+                        GestureDetector(
+                          onTap: () {
+                            
+                          },
+                        ),
                         ],
                       ),
                       

@@ -66,9 +66,11 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            obscureText: true,
                             decoration: InputDecoration(
                               suffixIcon: Icon(Icons.check, color: Colors.blue),
                               label: Text(
+                                
                                 'Create password',
                                 style: TextStyle(fontSize: 20, color: Colors.deepPurple),
                               ),
@@ -76,6 +78,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            obscureText: true,
                             decoration: InputDecoration(
                               suffixIcon: Icon(Icons.check, color: Colors.blue),
                               label: Text(

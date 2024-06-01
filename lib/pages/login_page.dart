@@ -5,14 +5,14 @@ import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class loginPage extends StatefulWidget {
+  const loginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _loginpageState();
+  State<loginPage> createState() => _loginPageState();
 }
 
-class _loginpageState extends State<LoginPage> {
+class _loginPageState extends State<loginPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -27,7 +27,7 @@ class _loginpageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 150), // Adjusted top padding
+                    SizedBox(height: 50), // Adjusted top padding
                     Text(
                       'SIGN IN',
                       style: GoogleFonts.poppins(
@@ -56,8 +56,9 @@ class _loginpageState extends State<LoginPage> {
                           ),
                           SizedBox(height: 20),
                           TextField(
+                            obscureText: true,
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.check, color: Colors.blue),
+                              suffixIcon: Icon(Icons.lock, color: Colors.blue),
                               label: Text(
                                 'Password',
                                 style: TextStyle(fontSize: 20, color: Colors.deepPurple),
@@ -65,13 +66,40 @@ class _loginpageState extends State<LoginPage> {
                             ),
                           ),
                           SizedBox(height: 20),
+                          GestureDetector(
+                            onTap: () {
+                              // Add your forgot password logic here
+                            },
+                          
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                'Forgot Password?',
+                                style: TextStyle(fontSize: 16, color: Colors.deepPurple),
+                              ),
+                            ),
+                          ),
+                          
                           MyButton(
                             onTap: () {
-                              // Add your sign-up logic here
+                              // Add your sign-in logic here
                             },
-                            text: 'Sign Up',
+                            text: 'Sign In',
                           ),
-                          SizedBox(height: 20), // Adjusted spacing after the button
+                          SizedBox(height: 20),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigate to Sign Up page
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Text(
+                                "Don't have an account? Sign Up",
+                                style: TextStyle(fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
                         ],
                       ),
                     ),

@@ -22,9 +22,11 @@ class _SignUpState extends State<SignUp> {
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
-            child: SingleChildScrollView( // Added SingleChildScrollView to prevent overflow
+            child: SingleChildScrollView(
+              // Added SingleChildScrollView to prevent overflow
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 50.0, vertical: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -39,7 +41,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18.0, vertical: 20.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -51,48 +54,56 @@ class _SignUpState extends State<SignUp> {
                             decoration: InputDecoration(
                               label: Text(
                                 'Username',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
+                                style: TextStyle(
+                                    fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.email, color: Color(0xffAD51D3)),
+                              suffixIcon:
+                                  Icon(Icons.email, color: Color(0xffAD51D3)),
                               label: Text(
                                 'Email',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
+                                style: TextStyle(
+                                    fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
+                              suffixIcon:
+                                  Icon(Icons.check, color: Color(0xffAD51D3)),
                               label: Text(
-                                'Create password',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
+                                'Create Password',
+                                style: TextStyle(
+                                    fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
+                              suffixIcon:
+                                  Icon(Icons.check, color: Color(0xffAD51D3)),
                               label: Text(
-                                'Confirm password',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
+                                'Confirm Password',
+                                style: TextStyle(
+                                    fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           MyButton(
                             onTap: () {
-                              // Add your sign-up logic here
+                              Navigator.pushNamed(context, '/homepage');
                             },
                             text: 'Sign Up',
                           ),
-                          SizedBox(height: 20), // Adjusted spacing after the button
+                          SizedBox(
+                              height: 20), // Adjusted spacing after the button
                         ],
                       ),
                     ),

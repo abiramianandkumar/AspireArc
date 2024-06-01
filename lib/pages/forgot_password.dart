@@ -2,6 +2,7 @@ import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:aspire_arc/components/textfield.dart'; 
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -19,7 +20,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
-            child: SingleChildScrollView( 
+            child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
                 child: Column(
@@ -27,14 +28,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   children: [
                     SizedBox(height: 50),
                     Text(
-                      'SIGN IN',
+                      'FORGOTTEN PASSWORD',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 33,
                         color: Color(0xffAD51D3),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20), 
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
                       decoration: BoxDecoration(
@@ -44,56 +45,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextField(
-                            decoration: InputDecoration(
-                              label: Text(
-                                'Username',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
-                              ),
-                            ),
+                          CustomTextField(
+                            labelText: 'Registered Email',
                           ),
                           SizedBox(height: 20),
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.lock, color: Color(0xffAD51D3)),
-                              label: Text(
-                                'Password',
-                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          GestureDetector(
-                            onTap: () {
-                              // Add your forgot password logic here
-                            },
-                          
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                'Forgot Password?',
-                                style: TextStyle(fontSize: 16, color: Colors.deepPurple),
-                              ),
-                            ),
-                          ),
-                          
                           MyButton(
                             onTap: () {
-                              Navigator.pushNamed(context, '/homepage');
+                              // Add your "send code" logic here
                             },
-                            text: 'Sign In',
+                            text: 'Send Code',
                           ),
                           SizedBox(height: 20),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/homepage');
+                              Navigator.pop(context); 
                             },
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 20),
+                            child: Align(
+                              alignment: Alignment.center,
                               child: Text(
-                                "Don't have an account? Sign Up",
-                                style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
+                                'Go back to sign in',
+                                style: TextStyle(fontSize: 16, color: Colors.white),
                               ),
                             ),
                           ),

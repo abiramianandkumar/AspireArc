@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(230),
+                      padding: EdgeInsets.all(100),
                       margin: EdgeInsets.symmetric(horizontal: 30),
                       decoration:BoxDecoration( 
                        color: Colors.white,

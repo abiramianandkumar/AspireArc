@@ -3,7 +3,7 @@
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart'; 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatefulWidget {

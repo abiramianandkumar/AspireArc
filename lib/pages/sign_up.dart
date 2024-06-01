@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 33,
-                        color: Colors.deepPurple,
+                        color: Color(0xffAD51D3),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -51,37 +51,37 @@ class _SignUpState extends State<SignUp> {
                             decoration: InputDecoration(
                               label: Text(
                                 'Username',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.email, color: Colors.blue),
+                              suffixIcon: Icon(Icons.email, color: Color(0xffAD51D3)),
                               label: Text(
                                 'Email',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.check, color: Colors.blue),
+                              suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
                               label: Text(
                                 'Create password',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
                           SizedBox(height: 20),
                           TextField(
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.check, color: Colors.blue),
+                              suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
                               label: Text(
                                 'Confirm password',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),

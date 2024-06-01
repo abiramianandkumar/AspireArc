@@ -1,3 +1,4 @@
+import 'package:aspire_arc/pages/forgot_password.dart';
 import 'package:aspire_arc/pages/get_started.dart';
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';

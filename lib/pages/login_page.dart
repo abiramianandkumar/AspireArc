@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
@@ -17,23 +15,23 @@ class _loginPageState extends State<loginPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundImage(), // Ensure this component is not null
+        BackgroundImage(), 
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
-            child: SingleChildScrollView( // Added SingleChildScrollView to prevent overflow
+            child: SingleChildScrollView( 
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 50), // Adjusted top padding
+                    SizedBox(height: 50),
                     Text(
                       'SIGN IN',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 33,
-                        color: Colors.deepPurple,
+                        color: Color(0xffAD51D3),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -50,7 +48,7 @@ class _loginPageState extends State<loginPage> {
                             decoration: InputDecoration(
                               label: Text(
                                 'Username',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
@@ -58,10 +56,10 @@ class _loginPageState extends State<loginPage> {
                           TextField(
                             obscureText: true,
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.lock, color: Colors.blue),
+                              suffixIcon: Icon(Icons.lock, color: Color(0xffAD51D3)),
                               label: Text(
                                 'Password',
-                                style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+                                style: TextStyle(fontSize: 20, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),
@@ -82,20 +80,20 @@ class _loginPageState extends State<loginPage> {
                           
                           MyButton(
                             onTap: () {
-                              // Add your sign-in logic here
+                              Navigator.pushNamed(context, '/homepage');
                             },
                             text: 'Sign In',
                           ),
                           SizedBox(height: 20),
                           GestureDetector(
                             onTap: () {
-                              // Navigate to Sign Up page
+                              Navigator.pushNamed(context, '/homepage');
                             },
                             child: Padding(
                               padding: EdgeInsets.only(left: 20),
                               child: Text(
                                 "Don't have an account? Sign Up",
-                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
                               ),
                             ),
                           ),

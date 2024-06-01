@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   home: GetStarted(),
   routes: {
     '/getstarted': (context) => GetStarted(),
-    '/login':(context)=>loginpage(),
+    '/login':(context) => loginpage(),
   },
     );
   }

@@ -1,11 +1,15 @@
+import 'package:aspire_arc/firebase_options.dart';
 import 'package:aspire_arc/pages/forgot_password.dart';
 import 'package:aspire_arc/pages/get_started.dart';
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';
 import 'package:aspire_arc/pages/sign_up.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
  // home: HomePage(),
-  home: ForgotPassword(),
+  home: SignUp(onTap: () {  },),
   routes: {
     '/getstarted': (context) => GetStarted(),
     '/login':(context) => loginPage(),

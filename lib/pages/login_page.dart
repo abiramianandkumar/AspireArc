@@ -47,6 +47,7 @@ class _loginPageState extends State<loginPage> {
                         children: [
                           CustomTextField(
                             labelText: 'Username',
+                            suffixIcon: Icon(Icons.person, color: Color(0xffAD51D3)),
                           ),
                           SizedBox(height: 20),
                           CustomTextField(

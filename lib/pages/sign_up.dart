@@ -1,7 +1,5 @@
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
-import 'package:aspire_arc/helper/helper_fn.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aspire_arc/components/textfield.dart'; 
@@ -15,12 +13,12 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-   final TextEditingController usernameController = TextEditingController();
-   final TextEditingController emailController = TextEditingController();
-   final TextEditingController passwordController = TextEditingController();
-   final TextEditingController confirmPwController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPwController = TextEditingController();
 
-   void signupuser() async{
+  void signupuser() {
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -29,33 +27,31 @@ class _SignUpState extends State<SignUp> {
     );
 
     if (passwordController.text != confirmPwController.text) {
-      //show loading circle
       Navigator.pop(context);
-
-      //show error msg
-      DisplayMessageToUser("password don't match",context);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Passwords do not match'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      Navigator.pop(context); 
+      Navigator.pushNamed(context, '/homepage'); 
     }
-
-    //try creating the user
-    try {
-      //create the user
-      UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-
-      //pop loading circle
-      Navigator.pop(context);
-    }on FirebaseAuthException catch(e) {
-      Navigator.pop(context);
-
-      //disply error msg
-      DisplayMessageToUser(e.code, context);
-    }
-   }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundImage(), 
+        BackgroundImage(),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
@@ -65,7 +61,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 150), 
+                    SizedBox(height: 150),
                     Text(
                       'SIGN UP',
                       style: GoogleFonts.poppins(
@@ -110,7 +106,20 @@ class _SignUpState extends State<SignUp> {
                             onTap: signupuser,
                             text: 'Sign Up',
                           ),
-                          SizedBox(height: 20), 
+                          SizedBox(height: 20),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/login');
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Text(
+                                "Already have an account? Sign In",
+                                style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
                         ],
                       ),
                     ),

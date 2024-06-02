@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aspire_arc/components/textfield.dart'; 
 
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -58,7 +58,7 @@ class _loginPageState extends State<loginPage> {
                           SizedBox(height: 20),
                           GestureDetector(
                             onTap: () {
-                              // Add your forgot password logic here
+                              Navigator.pushNamed(context, '/forgotpassword');
                             },
                             child: Align(
                               alignment: Alignment.centerRight,
@@ -77,7 +77,7 @@ class _loginPageState extends State<loginPage> {
                           SizedBox(height: 20),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/homepage');
+                              Navigator.pushNamed(context, '/signup');
                             },
                             child: Padding(
                               padding: EdgeInsets.only(left: 20),

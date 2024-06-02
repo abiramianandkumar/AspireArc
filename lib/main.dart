@@ -7,7 +7,7 @@ import 'package:aspire_arc/pages/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
@@ -20,12 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
- // home: HomePage(),
-  home: SignUp(onTap: () {  },),
-  routes: {
-    '/getstarted': (context) => GetStarted(),
-    '/login':(context) => loginPage(),
-  },
+      home: GetStarted(), 
+      routes: {
+        '/getstarted': (context) => GetStarted(),
+        '/login': (context) => LoginPage(),
+        '/homepage': (context) => HomePage(),
+        '/signup': (context) => SignUp(onTap: () {}),
+        '/forgotpassword': (context) => ForgotPassword(),
+      },
     );
   }
 }

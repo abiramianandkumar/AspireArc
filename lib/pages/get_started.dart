@@ -48,7 +48,10 @@ class _GetStartedState extends State<GetStarted> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  MyButton(onTap: getstarted, text: 'Get Started')
+                  MyButton(onTap:(){
+                    Navigator.pushNamed(context, '/login');
+                      
+                  }, text: 'Get Started')
                 ],
               ),
             ),

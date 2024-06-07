@@ -1,3 +1,4 @@
+import 'package:aspire_arc/auth/auth.dart';  
 import 'package:aspire_arc/firebase_options.dart';
 import 'package:aspire_arc/pages/forgot_password.dart';
 import 'package:aspire_arc/pages/get_started.dart';
@@ -20,13 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GetStarted(), 
+      home: const GetStarted(), 
       routes: {
-        '/getstarted': (context) => GetStarted(),
-        '/login': (context) => LoginPage(),
-        '/homepage': (context) => HomePage(),
-        '/signup': (context) => SignUp(onTap: () {}),
-        '/forgotpassword': (context) => ForgotPassword(),
+        '/getstarted': (context) => const GetStarted(),  // Ensure GetStarted constructor is const
+        '/login': (context) => const LoginPage(),
+        '/homepage': (context) => const HomePage(),
+        '/signup': (context) => SignUp(onTap: () {
+          Navigator.pushNamed(context, '/login');
+        }),
+        '/forgotpassword': (context) => const ForgotPassword(),
       },
     );
   }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GetStarted extends StatefulWidget {
-  GetStarted({super.key});
+  const GetStarted({super.key});
 
   @override
   State<GetStarted> createState() => _GetStartedState();

@@ -2,12 +2,13 @@ import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:aspire_arc/components/textfield.dart'; 
+import 'package:aspire_arc/components/textfield.dart';
 
 class SignUp extends StatefulWidget {
   final void Function()? onTap;
 
-  const SignUp({super.key, required this.onTap});
+  const SignUp({Key? key, required this.onTap}) : super(key: key);
+
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -27,23 +28,39 @@ class _SignUpState extends State<SignUp> {
     );
 
     if (passwordController.text != confirmPwController.text) {
-      Navigator.pop(context);
+      Navigator.pop(context); // Close the loading dialog
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Error'),
-          content: Text('Passwords do not match'),
+          content: Text('The passwords you entered do not match. Please try again.'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(context), // Close the error dialog
               child: Text('OK'),
             ),
           ],
         ),
       );
     } else {
-      Navigator.pop(context); 
-      Navigator.pushNamed(context, '/homepage'); 
+      Navigator.pop(context); // Close the loading dialog
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Success'),
+          content: Text('Sign up successful!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); 
+                Navigator.pushNamed(context, '/homepage'); 
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
     }
   }
 

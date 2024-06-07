@@ -2,21 +2,79 @@ import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:aspire_arc/components/textfield.dart'; 
+import 'package:aspire_arc/components/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  final TextEditingController _emailController = TextEditingController();
+
+  void sendResetEmail() async {
+    String email = _emailController.text.trim();
+
+    if (email.isNotEmpty) {
+      try {
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+
+        // Show success message or navigate to a success page
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Success'),
+            content: Text('Password reset email sent. Please check your email inbox.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context), // Close the dialog
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (error) {
+        // Show error message if there's an issue sending the reset email
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to send password reset email. Please try again later.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context), // Close the dialog
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    } else {
+      // Show error message if email field is empty
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Please enter your registered email address.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context), // Close the dialog
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundImage(), 
+        BackgroundImage(),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
@@ -35,7 +93,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         color: Color(0xffAD51D3),
                       ),
                     ),
-                    SizedBox(height: 20), 
+                    SizedBox(height: 20),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
                       decoration: BoxDecoration(
@@ -46,19 +104,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomTextField(
+                            controller: _emailController,
                             labelText: 'Registered Email',
                           ),
                           SizedBox(height: 20),
                           MyButton(
-                            onTap: () {
-                              // Add your "send code" logic here
-                            },
+                            onTap: sendResetEmail,
                             text: 'Send Code',
                           ),
                           SizedBox(height: 20),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pop(context); 
+                              Navigator.pop(context);
                             },
                             child: Align(
                               alignment: Alignment.center,

@@ -22,7 +22,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       try {
         await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
-        // Show success message or navigate to a success page
+        
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -30,14 +30,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             content: Text('Password reset email sent. Please check your email inbox.'),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context), // Close the dialog
+                onPressed: () => Navigator.pop(context), 
                 child: Text('OK'),
               ),
             ],
           ),
         );
       } catch (error) {
-        // Show error message if there's an issue sending the reset email
+        
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -45,7 +45,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             content: Text('Failed to send password reset email. Please try again later.'),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context), // Close the dialog
+                onPressed: () => Navigator.pop(context), 
                 child: Text('OK'),
               ),
             ],
@@ -53,7 +53,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         );
       }
     } else {
-      // Show error message if email field is empty
+     
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -61,7 +61,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           content: Text('Please enter your registered email address.'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), // Close the dialog
+              onPressed: () => Navigator.pop(context), 
               child: Text('OK'),
             ),
           ],

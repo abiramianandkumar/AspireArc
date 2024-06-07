@@ -44,7 +44,7 @@ class _SignUpState extends State<SignUp> {
         ),
       );
     } else {
-      Navigator.pop(context); // Close the loading dialog
+      Navigator.pop(context); 
       showDialog(
         context: context,
         builder: (context) => AlertDialog(

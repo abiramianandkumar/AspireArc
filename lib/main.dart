@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const GetStarted(), 
       routes: {
-        '/getstarted': (context) => const GetStarted(),  // Ensure GetStarted constructor is const
+        '/getstarted': (context) => const GetStarted(),  
         '/login': (context) => const LoginPage(),
         '/homepage': (context) => const HomePage(),
         '/signup': (context) => SignUp(onTap: () {

@@ -1,61 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:aspire_arc/components/textfield.dart';
 
 class SignUp extends StatefulWidget {
-  final void Function()? onTap;
-
-  const SignUp({Key? key, required this.onTap}) : super(key: key);
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPwController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPwController = TextEditingController();
 
-  void signupuser() {
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+  void signupuser() async {
+    try {
+      if (_passwordController.text != _confirmPwController.text) {
+        throw 'Passwords do not match';
+      }
 
-    if (passwordController.text != confirmPwController.text) {
-      Navigator.pop(context); // Close the loading dialog
+      // Create user with email and password
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
 
+      // Store additional user details in Firebase Authentication
+      await userCredential.user!.updateDisplayName(_usernameController.text);
+
+      // Navigate to homepage after successful sign-up
+      Navigator.pushReplacementNamed(context, '/homepage');
+    } catch (error) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Error'),
-          content: Text('The passwords you entered do not match. Please try again.'),
+          content: Text(error.toString()),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), // Close the error dialog
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    } else {
-      Navigator.pop(context); 
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Success'),
-          content: Text('Sign up successful!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); 
-                Navigator.pushNamed(context, '/homepage'); 
-              },
+              onPressed: () => Navigator.pop(context),
               child: Text('OK'),
             ),
           ],
@@ -81,7 +68,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 150),
                     Text(
                       'SIGN UP',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 33,
                         color: Color(0xffAD51D3),
@@ -95,25 +82,26 @@ class _SignUpState extends State<SignUp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomTextField(
-                            controller: usernameController,
+                            controller: _usernameController,
                             labelText: 'Username',
+                            suffixIcon: Icon(Icons.person, color: Color(0xffAD51D3)),
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
-                            controller: emailController,
+                            controller: _emailController,
                             labelText: 'Email',
                             suffixIcon: Icon(Icons.email, color: Color(0xffAD51D3)),
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
-                            controller: passwordController,
+                            controller: _passwordController,
                             labelText: 'Create password',
                             obscureText: true,
                             suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
                           ),
                           SizedBox(height: 20),
                           CustomTextField(
-                            controller: confirmPwController,
+                            controller: _confirmPwController,
                             labelText: 'Confirm Password',
                             obscureText: true,
                             suffixIcon: Icon(Icons.check, color: Color(0xffAD51D3)),
@@ -124,16 +112,29 @@ class _SignUpState extends State<SignUp> {
                             text: 'Sign Up',
                           ),
                           SizedBox(height: 20),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/login');
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                "Already have an account? Sign In",
-                                style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Already have an account? ",
+                                  style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/login');
+                                  },
+                                  child: Text(
+                                    "Sign In",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xffAD51D3),
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(height: 20),

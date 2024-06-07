@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:aspire_arc/components/textfield.dart';
-import 'package:aspire_arc/helper/helper_fn.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,8 +35,13 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacementNamed(context, '/homepage');
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-      DisplayMessageToUser(e.code, context);
+      displayMessageToUser(e.code, context); // Use the placeholder function
     }
+  }
+
+  void displayMessageToUser(String code, BuildContext context) {
+    // Placeholder function, you can replace this with your actual logic
+    print('Error: $code');
   }
 
   @override
@@ -103,16 +107,29 @@ class _LoginPageState extends State<LoginPage> {
                             text: 'Sign In',
                           ),
                           const SizedBox(height: 20),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/signup');
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                "Don't have an account? Sign Up",
-                                style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Don't have an account? ",
+                                  style: TextStyle(fontSize: 16, color: Color(0xffF4ECF7)),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/signup');
+                                  },
+                                  child: Text(
+                                    "Sign Up",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xffAD51D3),
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 20),

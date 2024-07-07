@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors, use_super_parameters
+
+import 'package:aspire_arc/pages/jobs.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aspire_arc/firebase_options.dart';
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/getstarted', 
+      //initialRoute: '/getstarted', 
       routes: {
         '/getstarted': (context) => const GetStarted(),  
         '/login': (context) => const LoginPage(),
@@ -28,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUp(),
         '/forgotpassword': (context) => const ForgotPassword(),
       },
+      home: Job(),
     );
   }
 }

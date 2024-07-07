@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:aspire_arc/components/bgimage.dart';
 import 'package:aspire_arc/components/button.dart';
 import 'package:flutter/material.dart';

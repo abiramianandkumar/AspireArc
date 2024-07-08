@@ -4,7 +4,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:aspire_arc/components/button.dart';
+import 'package:aspire_arc/components/drawer.dart';
+import 'package:aspire_arc/components/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +35,8 @@ class _HomeState extends State<Job> {
   }
 
   Future<void> uploadImage(File image, String? location) async {
-    final uri = Uri.parse('http://10.0.2.2:5000/api'); // Ensure Flask server is accessible
+    final uri = Uri.parse(
+        'http://10.0.2.2:5000/api'); // Ensure Flask server is accessible
     final request = http.MultipartRequest('POST', uri);
 
     request.files.add(await http.MultipartFile.fromPath('resume', image.path));
@@ -56,65 +60,105 @@ class _HomeState extends State<Job> {
   }
 
   @override
+  void dispose() {
+    _locationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if(_image == null )...[ Center(
-                child: MyButton(onTap: () async {
-                  final image = await pickImage();
-                  setState(() {
-                    _image = image;
-                  });
-                }, text: 'Pick Resume Image'),
-              ),],
-                
-              
-             
-             
-              if (_image != null) ...[
-                Image.file(_image!, height: 200),
-                TextField(
-                  controller: _locationController,
-                  decoration: InputDecoration(labelText: 'Enter Location'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    uploadImage(_image!, _locationController.text);
-                  },
-                  child: Text('Upload Image and Get Recommendations'),
-                ),
-              ],
-              Expanded(
-                child: _jobRecommendations.isEmpty
-                    ? Text('No job recommendations yet.')
-                    : ListView.builder(
-                        itemCount: _jobRecommendations.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                           
-                            child: ListTile(
-                              title: Text(_jobRecommendations[index]['Title']),
-                              subtitle: Text(_jobRecommendations[index]['Company']),
-                              trailing: Text(_jobRecommendations[index]['Location']),
-                            ),
-                          );
+      appBar: AppBar(
+        backgroundColor: Color(0xffF4ECF7 ),
+        title: Text(
+          'Job Recommendation',
+          
+          style: GoogleFonts.poppins(),
+        ),
+        centerTitle: true,
+      ),
+      drawer: MyDrawer(),
+      body: SingleChildScrollView(
+        primary: false,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (_image == null)
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 250.0),
+                      child: MyButton(
+                        onTap: () async {
+                          final image = await pickImage();
+                          setState(() {
+                            _image = image;
+                          });
                         },
+                        text: 'Pick Resume Image',
                       ),
-              ),
-            ],
+                    ),
+                  ),
+                if (_image != null) ...[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.file(_image!, height: 200),
+                      SizedBox(height: 20),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(color: Color(0xffF4ECF7),borderRadius: BorderRadius.circular(8),border: Border.all(color: Color(0xffF5EEF8))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: _locationController,
+                            decoration: InputDecoration(hintText: 'Enter Location',),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      MyButton(
+                        onTap: () {
+                          uploadImage(_image!, _locationController.text);
+                        },
+                        text: 'Get Recommendations',
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                ],
+                if (_jobRecommendations.isNotEmpty) ...[
+                  SizedBox(height: 20),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: _jobRecommendations.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.all(8.0),
+                        margin: EdgeInsets.symmetric(vertical: 4.0),
+                        decoration: BoxDecoration(
+                          color: Color(0xffF4ECF7 ),
+                         // border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: ListTile(
+                          title: Text(_jobRecommendations[index]['Title'],style: GoogleFonts.poppins(color:Color(0xff8E44AD),fontWeight:FontWeight.bold),),
+                          subtitle: Text(_jobRecommendations[index]['Company'],style: GoogleFonts.poppins(fontWeight:FontWeight.w600)),
+                          trailing: Text(_jobRecommendations[index]['Location'],style: GoogleFonts.poppins(fontWeight:FontWeight.w600)),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-
-

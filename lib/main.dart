@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUp(),
         '/forgotpassword': (context) => const ForgotPassword(),
       },
-      home: Job(),
+      home: GetStarted(),
     );
   }
 }

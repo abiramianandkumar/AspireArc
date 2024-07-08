@@ -1,4 +1,4 @@
-package com.example.aspire_arc
+package com.example.jrs_model
 
 import io.flutter.embedding.android.FlutterActivity
 

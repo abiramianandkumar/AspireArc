@@ -13,10 +13,9 @@ class OnlineCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffF4ECF7 ),
+        backgroundColor: Color(0xffF4ECF7),
         title: Text(
           'Online Courses',
-          
           style: GoogleFonts.poppins(),
         ),
         centerTitle: true,
@@ -25,96 +24,133 @@ class OnlineCourses extends StatelessWidget {
       backgroundColor: Color(0xffF8F9F9),
       body: SingleChildScrollView(
         child: Padding(
-        
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          
-          children: [
-            
-            
-            Row(
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  
-                  child: ElevatedButton(
-                    
-                      onPressed: () {},
-                      child: Text(
-                        'Resume',
-                        style: GoogleFonts.poppins(color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), 
-                ),)),
-                ),
-                SizedBox(width: 50,),
-                Container(
-                  height: 150,
-                  width: 150,
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Resume',
-                        style: GoogleFonts.poppins(color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), 
-                ),)),
-                ),
-              ],
-            ),
-            SizedBox(height: 50,),
-             Row(
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(color: Color(0xffF4ECF7 )),
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('lib/assets/b.png'),
-                          Text(
-                            'Bussiness ',
-                            style: GoogleFonts.poppins(color: Colors.black),
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/programming');
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset('lib/assets/prog.png'),
+                            Text(
+                              'Programming',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          shadowColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Text(
-                            'Analytics ',
-                            style: GoogleFonts.poppins(color: Colors.black),
+                        )),
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        child: Column(
+                          children: [
+                            Image.asset('lib/assets/android.png'),
+                            Text(
+                              'Mobile',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                            Text(
+                              'Development',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          shadowColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), 
-                ),)),
-                ),
-                SizedBox(width: 50,),
-                SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Resume',
-                        style: GoogleFonts.poppins(color: Colors.black),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15), 
-                ),)),
-                ),
-              ],
-            )
-          ],
+                        )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Row(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(color: Color(0xffF4ECF7)),
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('lib/assets/bussiness.png'),
+                            Text(
+                              'Bussiness ',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                            Text(
+                              'Analytics ',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          shadowColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        )),
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  SizedBox(
+                    height: 150,
+                    width: 150,
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        child: Column(
+                          children: [
+                            Image.asset('lib/assets/web.png'),
+                            Text(
+                              'Web',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                            Text(
+                              'Development',
+                              style: GoogleFonts.poppins(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          shadowColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        )),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

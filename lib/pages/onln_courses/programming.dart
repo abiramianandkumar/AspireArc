@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Programming extends StatelessWidget {
   const Programming({super.key});
@@ -21,31 +21,62 @@ class Programming extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: 100,
-           width: double.infinity,
-            decoration: BoxDecoration(color: Colors.cyan),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: ElevatedButton(
+            onPressed: _launchURL,
+            child: Container(
+              height: 70,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color(0xffE8DAEF),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('hjgj'),
-                Text('hjvhv'),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Introduction To C',
+                          style: GoogleFonts.poppins(
+                              fontSize: 17, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Great Learning',
+                          style: GoogleFonts.poppins(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'FREE',
+                          style: GoogleFonts.poppins(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text('hjgj',style:TextStyle(fontSize: 40),),
-            ],
-          ),
-              ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _launchURL() async {
+    final Uri url = Uri.parse('https://olympus.mygreatlearning.com/courses/54666');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

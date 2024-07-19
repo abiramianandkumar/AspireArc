@@ -34,7 +34,9 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                      
+                      },
                       child: Text(
                         'Resume',
                         style: GoogleFonts.poppins(color: Colors.black),
@@ -49,7 +51,9 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                       //   Navigator.pushNamed(context, '/');
+                      },
                       child: Text(
                         'Resume',
                         style: GoogleFonts.poppins(color: Colors.black),
@@ -68,9 +72,11 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/job');
+                      },
                       child: Text(
-                        'Resume',
+                        'Job Recommendation',
                         style: GoogleFonts.poppins(color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -83,9 +89,11 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/onlinecourses');
+                      },
                       child: Text(
-                        'Resume',
+                        'Online Courses',
                         style: GoogleFonts.poppins(color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(

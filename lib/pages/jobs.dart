@@ -78,6 +78,7 @@ class _HomeState extends State<Job> {
         centerTitle: true,
       ),
       drawer: MyDrawer(),
+      backgroundColor: Color(0xffF8F9F9),
       body: SingleChildScrollView(
         primary: false,
         child: Padding(

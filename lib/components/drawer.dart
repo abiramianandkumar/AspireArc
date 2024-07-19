@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/jobs.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +24,7 @@ class MyDrawer extends StatelessWidget {
           ))),
           ListTile(
             leading: Icon(
-              Icons.home,
+              Icons.home_rounded,
               color: Color(0xffAD51D3),
             ),
             title: Text(
@@ -35,7 +38,7 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.home,
+              Icons.wallet_travel_rounded,
               color: Color(0xffAD51D3),
             ),
             title: Text(
@@ -43,8 +46,36 @@ class MyDrawer extends StatelessWidget {
               style: GoogleFonts.poppins(letterSpacing: 1.5),
             ),
             onTap: () {
+              
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Job()));
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.assignment_rounded,
+              color: Color(0xffAD51D3),
+            ),
+            title: Text(
+              'Aptitude Test',
+              style: GoogleFonts.poppins(letterSpacing: 1.5),
+            ),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Job()));
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.logout_rounded,
+              color: Color(0xffAD51D3),
+            ),
+            title: Text(
+              'Logout',
+              style: GoogleFonts.poppins(letterSpacing: 1.5),
+            ),
+            onTap: () {
+              FirebaseAuth.instance.signOut();
             },
           ),
         ],

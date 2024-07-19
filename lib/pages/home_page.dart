@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 
+import 'package:aspire_arc/components/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      drawer: MyDrawer(),
       backgroundColor: Color(0xffF8F9F9),
       body: Padding(
         
@@ -32,7 +34,9 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                      
+                      },
                       child: Text(
                         'Resume',
                         style: GoogleFonts.poppins(color: Colors.black),
@@ -47,7 +51,9 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                       //   Navigator.pushNamed(context, '/');
+                      },
                       child: Text(
                         'Resume',
                         style: GoogleFonts.poppins(color: Colors.black),
@@ -66,9 +72,11 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/job');
+                      },
                       child: Text(
-                        'Resume',
+                        'Job Recommendation',
                         style: GoogleFonts.poppins(color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -81,9 +89,11 @@ class HomePage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/onlinecourses');
+                      },
                       child: Text(
-                        'Resume',
+                        'Online Courses',
                         style: GoogleFonts.poppins(color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(

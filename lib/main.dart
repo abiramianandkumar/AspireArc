@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_super_parameters
 
+import 'package:aspire_arc/pages/ats.dart';
 import 'package:aspire_arc/pages/jobs.dart';
+import 'package:aspire_arc/pages/online_courses.dart';
+import 'package:aspire_arc/pages/onln_courses/programming.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aspire_arc/firebase_options.dart';
@@ -31,6 +34,10 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => const HomePage(),
         '/signup': (context) => const SignUp(),
         '/forgotpassword': (context) => const ForgotPassword(),
+        '/programming':(context)=>const Programming(),
+        '/job':(context) => const Job(),
+        '/ats':(context) =>  ATSPage(),
+        '/onlinecourses':(context) => const OnlineCourses(),
       },
       home: Prevhome(),
     );

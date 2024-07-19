@@ -10,6 +10,7 @@ import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';
 import 'package:aspire_arc/pages/sign_up.dart';
 
+import 'pages/prevhome.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUp(),
         '/forgotpassword': (context) => const ForgotPassword(),
       },
-      home: GetStarted(),
+      home: Prevhome(),
     );
   }
 }

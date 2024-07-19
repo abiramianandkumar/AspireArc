@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAOJKbgdQa979OM2EB3z7vd1r08qXMdXd0',
-    appId: '1:164648465017:android:fe47e641df663576819aa8',
+    appId: '1:164648465017:android:6d84a5e2f104ffda819aa8',
     messagingSenderId: '164648465017',
     projectId: 'aspirearc',
     storageBucket: 'aspirearc.appspot.com',
@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'aspirearc.appspot.com',
     measurementId: 'G-CENN8MHE00',
   );
+
 }

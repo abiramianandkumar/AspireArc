@@ -38,8 +38,9 @@ class MyApp extends StatelessWidget {
         '/job':(context) => const Job(),
         '/ats':(context) =>  ATSPage(),
         '/onlinecourses':(context) => const OnlineCourses(),
+        '/prevhome':(context) => const Prevhome(),
       },
-      home: Prevhome(),
+      home: ATSPage(),
     );
   }
 }

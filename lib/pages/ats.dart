@@ -1,9 +1,13 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:aspire_arc/components/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class ATSPage extends StatefulWidget {
   @override
@@ -36,7 +40,7 @@ class _ATSPageState extends State<ATSPage> {
       return;
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/ATS'));
+    var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/analyze')); // Update with your local IP
     request.fields['input_text'] = jobDescController.text;
     request.fields['prompt'] = prompt;
     request.files.add(await http.MultipartFile.fromPath('file', _file!.path, filename: basename(_file!.path)));
@@ -61,6 +65,7 @@ class _ATSPageState extends State<ATSPage> {
       appBar: AppBar(
         title: Text('ATS Resume Expert'),
       ),
+      drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -69,7 +74,7 @@ class _ATSPageState extends State<ATSPage> {
               TextField(
                 controller: jobDescController,
                 decoration: InputDecoration(labelText: 'Job Description'),
-                maxLines: 5,
+                maxLines: null, // Allows any number of lines
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -96,7 +101,12 @@ class _ATSPageState extends State<ATSPage> {
                 child: Text('Percentage Match'),
               ),
               SizedBox(height: 20),
-              Text(_response),
+              _response.isNotEmpty
+                  ? Container(decoration: BoxDecoration(color: Color(0xffF4ECF7),borderRadius: BorderRadius.circular(10)),child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MarkdownBody(data: _response),
+                  ),)
+                  : Text('No response yet.'),
             ],
           ),
         ),
@@ -107,7 +117,7 @@ class _ATSPageState extends State<ATSPage> {
   String get _inputPrompt1 => """
   You are an experienced Technical Human Resource Manager. Your task is to review the provided resume against the job description. 
   Please share your professional evaluation on whether the candidate's profile aligns with the role. 
-  Highlight the strengths and weaknesses of the applicant in relation to the specified job requirements.
+  Highlight the strengths and weaknesses of the applicant in relation to the specified job requirements. 
   """;
 
   String get _inputPrompt2 => """

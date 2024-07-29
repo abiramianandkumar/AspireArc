@@ -72,10 +72,13 @@ class Programming extends StatelessWidget {
   }
 
   void _launchURL() async {
-    final Uri url = Uri.parse('https://olympus.mygreatlearning.com/courses/54666');
+    final Uri url = Uri.parse('https://www.mygreatlearning.com/academy/learn-for-free/courses/c-for-beginners1');
+    print('Attempting to launch $url');
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
+      print('Successfully launched $url');
     } else {
+      print('Could not launch $url');
       throw 'Could not launch $url';
     }
   }

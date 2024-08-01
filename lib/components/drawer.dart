@@ -2,6 +2,7 @@
 
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/jobs.dart';
+import 'package:aspire_arc/pages/online_courses.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,6 +64,20 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Job()));
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.assignment_rounded,
+              color: Color(0xffAD51D3),
+            ),
+            title: Text(
+              'Online Courses',
+              style: GoogleFonts.poppins(letterSpacing: 1.5),
+            ),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => OnlineCourses()));
             },
           ),
           ListTile(

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/onlinecourses':(context) => const OnlineCourses(),
         '/prevhome':(context) => const Prevhome(),
       },
-      home: ATSPage(),
+      home: Programming(),
     );
   }
 }

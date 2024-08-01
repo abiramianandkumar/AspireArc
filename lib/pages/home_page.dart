@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Color(0xffF8F9F9),
         title: Text(
           'Home',
-          style: GoogleFonts.poppins(letterSpacing: 0.3),
+          style: GoogleFonts.poppins(letterSpacing: 0.3,fontWeight:FontWeight.w800),
         ),
         centerTitle: true,
       ),
@@ -37,9 +37,15 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                       
                       },
-                      child: Text(
-                        'Resume',
-                        style: GoogleFonts.poppins(color: Colors.black),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        //  Icon(Icons.home_outlined),
+                          Text(
+                            'Resume',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                        ],
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
@@ -52,11 +58,22 @@ class HomePage extends StatelessWidget {
                   width: 150,
                   child: ElevatedButton(
                       onPressed: () {
-                       //   Navigator.pushNamed(context, '/');
+                          Navigator.pushNamed(context, '/job');
                       },
-                      child: Text(
-                        'Resume',
-                        style: GoogleFonts.poppins(color: Colors.black),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.wallet_travel_rounded),
+                          SizedBox(height: 10,),
+                          Text(
+                            'Career',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                          Text(
+                            'Suggestion',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                        ],
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
@@ -73,11 +90,22 @@ class HomePage extends StatelessWidget {
                   width: 150,
                   child: ElevatedButton(
                       onPressed: () {
-                          Navigator.pushNamed(context, '/job');
+                          Navigator.pushNamed(context, '/prevhome');
                       },
-                      child: Text(
-                        'Job Recommendation',
-                        style: GoogleFonts.poppins(color: Colors.black),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.assignment_rounded),
+                          SizedBox(height: 10,),
+                          Text(
+                            'Aptitude',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                          Text(
+                            'Test',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                        ],
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
@@ -92,9 +120,20 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                           Navigator.pushNamed(context, '/onlinecourses');
                       },
-                      child: Text(
-                        'Online Courses',
-                        style: GoogleFonts.poppins(color: Colors.black),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.card_membership_rounded),
+                          SizedBox(height: 10,),
+                          Text(
+                            'Online',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                           Text(
+                            'Courses',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          )
+                        ],
                       ),
                       style: ElevatedButton.styleFrom(
                           elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(

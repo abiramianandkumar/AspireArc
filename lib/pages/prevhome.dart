@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:aspire_arc/pages/description_page.dart';
-import 'package:aspire_arc/pages/logical reasoning.dart';
-import 'package:aspire_arc/pages/verbal reasoning.dart';
-import 'package:aspire_arc/pages/weekly_analysis.dart';
 import 'package:aspire_arc/models/test_history.dart';
 import 'package:aspire_arc/services/firebase_service.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'weekly_analysis.dart';
 
 class Prevhome extends StatefulWidget {
   const Prevhome({Key? key}) : super(key: key);
@@ -51,35 +49,17 @@ class _PrevhomeState extends State<Prevhome> {
             }),
             SizedBox(height: 10),
             _buildTestButton(context, 'VERBAL REASONING', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => VerbalReasoningPage(
-                    onSubmit: (score, timeElapsed) =>
-                        _addTestHistory('Verbal Reasoning', score, timeElapsed),
-                  ),
-                ),
-              );
+              _navigateToDescriptionPage('Verbal Reasoning');
             }),
             SizedBox(height: 70),
             _buildTestButton(context, 'LOGICAL REASONING', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LogicalReasoningPage(
-                    onSubmit: (score, timeElapsed) =>
-                        _addTestHistory('Logical Reasoning', score, timeElapsed),
-                  ),
-                ),
-              );
+              _navigateToDescriptionPage('Logical Reasoning');
             }),
             SizedBox(height: 10),
             _buildTestButton(context, 'WEEKLY ANALYSIS', () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => WeeklyAnalysisPage(),
-                ),
+                MaterialPageRoute(builder: (context) => WeeklyAnalysisPage()),
               );
             }),
             SizedBox(height: 10),
@@ -102,7 +82,11 @@ class _PrevhomeState extends State<Prevhome> {
                       final testHistory = snapshot.data![index];
                       return ListTile(
                         title: Text(testHistory.testName),
-                        subtitle: Text('Score: ${testHistory.score}\nTime Elapsed: ${testHistory.timeElapsed}s\nCompleted on: ${testHistory.completionTime}'),
+                        subtitle: Text(
+                          'Score: ${testHistory.score}\n'
+                          'Time Elapsed: ${testHistory.timeElapsed}s\n'
+                          'Completed on: ${testHistory.completionTime}',
+                        ),
                         isThreeLine: true,
                       );
                     },
@@ -117,7 +101,6 @@ class _PrevhomeState extends State<Prevhome> {
   }
 
   void _navigateToDescriptionPage(String testName) {
-    // Navigate to description page
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -132,12 +115,12 @@ class _PrevhomeState extends State<Prevhome> {
       child: Text(
         label,
         style: TextStyle(
-          color: Color(0xffF4ECF7), // Set text color
+          color: Color(0xffF4ECF7),
           fontSize: 20,
         ),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xffAD51D3), // Use the buttonColor variable here
+        backgroundColor: Color(0xffAD51D3),
         minimumSize: Size(double.infinity, 100),
         elevation: 10,
         shadowColor: Colors.black,
@@ -149,23 +132,22 @@ class _PrevhomeState extends State<Prevhome> {
   }
 
   Future<void> _addTestHistory(String testName, double score, int timeElapsed) async {
-  try {
-    await _firestoreService.addTestHistory(TestHistory(
-      testName: testName,
-      score: score,
-      completionTime: DateTime.now(),
-      timeElapsed: timeElapsed.toDouble(), // Convert int to double here
-    ));
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Test score added successfully'),
-      duration: Duration(seconds: 2),
-    ));
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Failed to add test score'),
-      duration: Duration(seconds: 2),
-    ));
+    try {
+      await _firestoreService.addTestHistory(TestHistory(
+        testName: testName,
+        score: score,
+        completionTime: DateTime.now(),
+        timeElapsed: timeElapsed.toDouble(),
+      ));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Test score added successfully'),
+        duration: Duration(seconds: 2),
+      ));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Failed to add test score'),
+        duration: Duration(seconds: 2),
+      ));
+    }
   }
-}
-
 }

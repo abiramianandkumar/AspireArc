@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:aspire_arc/models/sample_questions.dart'; // Import your question data
+import 'package:aspire_arc/models/sample_questions2.dart';
 import 'result_screen.dart'; // Import your result screen
 
-typedef void OnSubmit(double score, int timeElapsed); // Adjusted to include timeElapsed
+typedef void OnSubmit(double score, double timeElapsed);
 
 class LogicalReasoningPage extends StatefulWidget {
   final OnSubmit onSubmit;
@@ -16,24 +16,28 @@ class LogicalReasoningPage extends StatefulWidget {
 
 class _LogicalReasoningPageState extends State<LogicalReasoningPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  List<int?> _selectedAnswers = []; // List to hold selected answer indices
-  bool isSubmitted = false;
+  List<int?> _selectedAnswers = [];
   double score = 0;
   Stopwatch stopwatch = Stopwatch();
   late Timer timer;
-  int timeElapsedInSeconds = 0;
+  double timeElapsedInSeconds = 0;
   int currentQuestionIndex = 0;
 
   @override
   void initState() {
     super.initState();
+    _initializeAnswersList();
     startTimer();
+  }
+
+  void _initializeAnswersList() {
+    _selectedAnswers = List<int?>.filled(sampleQuestions.length, null);
   }
 
   void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
-        timeElapsedInSeconds = stopwatch.elapsed.inSeconds;
+        timeElapsedInSeconds = stopwatch.elapsed.inSeconds.toDouble();
       });
     });
     stopwatch.start();
@@ -55,7 +59,7 @@ class _LogicalReasoningPageState extends State<LogicalReasoningPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Logical Reasoning'),
+        title: Text('LogicalReasoningPage'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -86,26 +90,34 @@ class _LogicalReasoningPageState extends State<LogicalReasoningPage> {
                 },
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _calculateScore();
-                  }
-                },
-                child: Text('Next Question'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: currentQuestionIndex > 0 ? _goToPreviousQuestion : null,
+                    child: Text('Previous'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _calculateScore();
+                      }
+                    },
+                    child: Text(currentQuestionIndex < sampleQuestions.length - 1 ? 'Next Question' : 'Finish'),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
-              isSubmitted
-                  ? Text(
-                      'Score: $score',
-                      style: TextStyle(fontSize: 18),
-                    )
-                  : Container(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _goToPreviousQuestion() {
+    setState(() {
+      currentQuestionIndex--;
+    });
   }
 
   void _calculateScore() {
@@ -114,14 +126,13 @@ class _LogicalReasoningPageState extends State<LogicalReasoningPage> {
     setState(() {
       score += (userAnswerIndex == correctAnswerIndex) ? 10.0 : 0.0;
       currentQuestionIndex++;
-      isSubmitted = true;
       if (currentQuestionIndex >= sampleQuestions.length) {
         stopTimer();
         widget.onSubmit(score, timeElapsedInSeconds);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ResultScreen(score: score, timeElapsed: timeElapsedInSeconds.toDouble()),
+            builder: (context) => ResultScreen(score: score, timeElapsed: timeElapsedInSeconds),
           ),
         );
       }

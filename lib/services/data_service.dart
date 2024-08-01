@@ -1,32 +1,52 @@
-// services/data_service.dart
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:aspire_arc/models/test_history.dart';
 import 'package:aspire_arc/models/weekly_score.dart';
 
 class DataService {
-  final CollectionReference testHistoryCollection =
+  final CollectionReference _testHistoryCollection =
       FirebaseFirestore.instance.collection('testHistory');
+  final CollectionReference _weeklyScoresCollection =
+      FirebaseFirestore.instance.collection('weeklyScores');
 
+  // Fetch Weekly Scores (Simulated Data)
   Future<List<WeeklyScore>> fetchWeeklyScores() async {
-    // Simulate fetching data from a real-time database
     await Future.delayed(Duration(seconds: 2)); // Simulate network delay
+    // Return simulated weekly scores
     return [
-      WeeklyScore(week: 1.0, score: 75),
-      WeeklyScore(week: 2.0, score: 80),
-      WeeklyScore(week: 3.0, score: 60),
-      WeeklyScore(week: 4.0, score: 70),
+      WeeklyScore(week: 1, score: 75),
+      WeeklyScore(week: 2, score: 80),
+      WeeklyScore(week: 3, score: 60),
+      WeeklyScore(week: 4, score: 70),
     ];
   }
 
+  // Fetch Test History from Firestore
   Future<List<TestHistory>> fetchTestHistory() async {
-    // Fetch test history from Firestore
-    final querySnapshot = await testHistoryCollection.get();
-    return querySnapshot.docs.map((doc) => TestHistory.fromFirestore(doc)).toList();
+    try {
+      final querySnapshot = await _testHistoryCollection.get();
+      return querySnapshot.docs.map((doc) => TestHistory.fromFirestore(doc)).toList();
+    } catch (e) {
+      print('Error fetching test history: $e');
+      throw Exception('Failed to fetch test history');
+    }
   }
 
+  // Fetch Test History as Stream
+  Stream<List<TestHistory>> testHistoryStream() {
+    return _testHistoryCollection.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return TestHistory.fromFirestore(doc);
+      }).toList();
+    });
+  }
+
+  // Add Test History to Firestore
   Future<void> addTestHistory(TestHistory history) async {
-    // Add test history to Firestore
-    await testHistoryCollection.add(history.toFirestore());
+    try {
+      await _testHistoryCollection.add(history.toFirestore());
+    } catch (e) {
+      print('Error adding test history: $e');
+      throw Exception('Failed to add test history');
+    }
   }
 }

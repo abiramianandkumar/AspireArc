@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:aspire_arc/models/test_history.dart'; // Import your test history model
+import 'package:aspire_arc/models/test_history.dart';
+import 'package:aspire_arc/services/data_service.dart';
 
 class TestHistoryPage extends StatelessWidget {
-  final List<TestHistory> testHistory;
-
-  const TestHistoryPage({Key? key, required this.testHistory}) : super(key: key);
+  final DataService _dataService = DataService();
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +11,38 @@ class TestHistoryPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Test History'),
       ),
-      body: ListView.builder(
-        itemCount: testHistory.length,
-        itemBuilder: (context, index) {
-          // Format completion time
-          String formattedTime = '${testHistory[index].completionTime.hour}:${testHistory[index].completionTime.minute.toString().padLeft(2, '0')}';
+      body: StreamBuilder<List<TestHistory>>(
+        stream: _dataService.testHistoryStream(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No test history found.'));
+          }
 
-          return ListTile(
-            title: Text(testHistory[index].testName),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Score: ${testHistory[index].score.toStringAsFixed(2)}'),
-                Text('Completed: $formattedTime'), // Display formatted completion time
-              ],
-            ),
+          List<TestHistory> testHistory = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: testHistory.length,
+            itemBuilder: (context, index) {
+              final history = testHistory[index];
+
+              // Format completion time
+              String formattedTime = '${history.completionTime.hour}:${history.completionTime.minute.toString().padLeft(2, '0')}';
+
+              return ListTile(
+                title: Text(history.testName),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Score: ${history.score.toStringAsFixed(2)}'),
+                    Text('Completed: $formattedTime'), // Display formatted completion time
+                  ],
+                ),
+              );
+            },
           );
         },
       ),

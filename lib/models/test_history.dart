@@ -17,9 +17,9 @@ class TestHistory {
     final data = doc.data() as Map<String, dynamic>;
     return TestHistory(
       testName: data['testName'],
-      score: data['score'].toDouble(),
+      score: data['score'],
       completionTime: (data['completionTime'] as Timestamp).toDate(),
-      timeElapsed: data['timeElapsed'].toDouble(),
+      timeElapsed: data['timeElapsed'],
     );
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aspire_arc/pages/arithmetic aptitude.dart';
+import 'package:aspire_arc/pages/logical reasoning.dart';
+import 'package:aspire_arc/pages/verbal reasoning.dart';
 
 class DescriptionPage extends StatelessWidget {
   final String testName;
@@ -25,29 +27,68 @@ class DescriptionPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Description: Add your description text here. This could include details about the test format, expected skills, and any other relevant information.',
+              _getDescription(testName),
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ArithmeticAptitudePage(
-                      onSubmit: (score, timeElapsed) {
-                        // Handle the onSubmit callback if needed
-                      },
-                    ),
-                  ),
-                );
+                _navigateToTestPage(context, testName);
               },
               child: Text('Start Test'),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  String _getDescription(String testName) {
+    switch (testName) {
+      case 'Verbal Reasoning':
+        return 'Description: Verbal Reasoning assesses your ability to understand and reason using concepts framed in words. It involves reading comprehension, critical reasoning, and identifying relationships between words or phrases.';
+      case 'Logical Reasoning':
+        return 'Description: Logical Reasoning assesses your ability to think clearly and solve problems using structured thinking. It includes tasks like number series, pattern recognition, and logical puzzles.';
+      case 'Arithmetic Aptitude':
+        return 'Description: This section assesses your ability in solving arithmetic problems, understanding mathematical concepts, and applying them to various scenarios. You may encounter problems involving basic calculations, percentages, ratios, and more.';
+      default:
+        return 'No description available for this test.';
+    }
+  }
+
+  void _navigateToTestPage(BuildContext context, String testName) {
+    Widget testPage;
+
+    switch (testName) {
+      case 'Verbal Reasoning':
+        testPage = VerbalReasoningPage(
+          onSubmit: (score, timeElapsed) {
+            // Handle the onSubmit callback if needed
+          },
+        );
+        break;
+      case 'Logical Reasoning':
+        testPage = LogicalReasoningPage(
+          onSubmit: (score, timeElapsed) {
+            // Handle the onSubmit callback if needed
+          },
+        );
+        break;
+      case 'Arithmetic Aptitude':
+        testPage = ArithmeticAptitudePage(
+          onSubmit: (score, timeElapsed) {
+            // Handle the onSubmit callback if needed
+          },
+        );
+        break;
+      default:
+        throw Exception('Invalid test name: $testName');
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => testPage),
     );
   }
 }

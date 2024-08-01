@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:aspire_arc/models/sample_questions.dart';
-import 'result_screen.dart'; // Import your result screen
+import 'result_screen.dart';
 
 typedef void OnSubmit(double score, double timeElapsed);
 

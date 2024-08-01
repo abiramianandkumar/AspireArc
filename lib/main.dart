@@ -4,6 +4,7 @@ import 'package:aspire_arc/pages/ats.dart';
 import 'package:aspire_arc/pages/jobs.dart';
 import 'package:aspire_arc/pages/online_courses.dart';
 import 'package:aspire_arc/pages/onln_courses/programming.dart';
+import 'package:aspire_arc/pages/profile/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aspire_arc/firebase_options.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/ats':(context) =>  ATSPage(),
         '/onlinecourses':(context) => const OnlineCourses(),
       },
-      home: Prevhome(),
+      home: ProfilePage(),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:aspire_arc/pages/jobs.dart';
 import 'package:aspire_arc/pages/online_courses.dart';
 import 'package:aspire_arc/pages/onln_courses/programming.dart';
 import 'package:aspire_arc/pages/profile/profilepage.dart';
+import 'package:aspire_arc/resume%20templates/form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aspire_arc/firebase_options.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/onlinecourses':(context) => const OnlineCourses(),
         '/prevhome':(context) => const Prevhome(),
       },
-      home: Prevhome(),
+      home: FormUI(),
     );
   }
 }

@@ -14,6 +14,7 @@ import 'package:aspire_arc/pages/get_started.dart';
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';
 import 'package:aspire_arc/pages/sign_up.dart';
+import 'package:aspire_arc/pages/resumes/form.dart';
 
 import 'pages/prevhome.dart';
 void main() async {
@@ -42,7 +43,11 @@ class MyApp extends StatelessWidget {
         '/onlinecourses':(context) => const OnlineCourses(),
         '/prevhome':(context) => const Prevhome(),
       },
+<<<<<<< HEAD
       home: FormUI(),
+=======
+      home: FormScreen(),
+>>>>>>> 3da28cfce49c4d3e02337fe9224923aa5c2a0dc1
     );
   }
 }

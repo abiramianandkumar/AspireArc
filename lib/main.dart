@@ -41,8 +41,9 @@ class MyApp extends StatelessWidget {
         '/ats':(context) =>  ATSPage(),
         '/onlinecourses':(context) => const OnlineCourses(),
         '/prevhome':(context) => const Prevhome(),
+        '/atspage':(context) =>  ATSPage(),
       },
-      home: ATSPage(),
+      home: HomePage(),
     );
   }
 }

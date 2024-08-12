@@ -141,7 +141,35 @@ class HomePage extends StatelessWidget {
                 ),)),
                 ),
               ],
-            )
+            ),
+            SizedBox(width: 50,),
+            SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: ElevatedButton(
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/atspage');
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.qr_code_2_rounded),
+                          SizedBox(height: 10,),
+                          Text(
+                            'ATS',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          ),
+                           Text(
+                            'Scanner',
+                            style: GoogleFonts.poppins(color: Colors.black,fontWeight:FontWeight.w600),
+                          )
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 10, shadowColor: Colors.black,shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15), 
+                ),)),
+                ),
           ],
         ),
       ),

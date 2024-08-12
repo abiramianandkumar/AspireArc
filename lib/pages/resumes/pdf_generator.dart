@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> generatePdf(String name, String email, String phone, String experience, String education) async {
+Future<void> generatePdf(BuildContext context, String name, String email, String phone, String experience, String education) async {
   final pdf = pw.Document();
 
   pdf.addPage(
@@ -26,15 +28,39 @@ Future<void> generatePdf(String name, String email, String phone, String experie
     ),
   );
 
-  final output = await getTemporaryDirectory();
-  final file = File("${output.path}/resume.pdf");
-  await file.writeAsBytes(await pdf.save());
+  if (await Permission.storage.request().isGranted) {
+    final output = await getExternalStorageDirectory();
+    final file = File("${output?.path}/resume.pdf");
+    await file.writeAsBytes(await pdf.save());
 
-  // Open the generated PDF
-  final pdfUrl = Uri.file(file.path);
-  if (await canLaunch(pdfUrl.toString())) {
-    await launch(pdfUrl.toString());
+    // Provide a download link or button
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('PDF Generated'),
+        content: Text('The PDF has been saved to ${file.path}.'),
+        actions: [
+          TextButton(
+            child: Text('Open'),
+            onPressed: () async {
+              final pdfUrl = Uri.file(file.path);
+              if (await canLaunch(pdfUrl.toString())) {
+                await launch(pdfUrl.toString());
+              } else {
+                throw 'Could not launch $pdfUrl';
+              }
+            },
+          ),
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
   } else {
-    throw 'Could not launch $pdfUrl';
+    throw 'Storage permission not granted';
   }
 }

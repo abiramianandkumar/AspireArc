@@ -1,3 +1,4 @@
+import 'package:aspire_arc/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -27,7 +28,7 @@ class ResultScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator (context)  => HomePage();
               },
               child: Text('Back to Home'),
             ),

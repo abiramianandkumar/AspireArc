@@ -4,8 +4,7 @@ import 'package:aspire_arc/pages/ats.dart';
 import 'package:aspire_arc/pages/jobs.dart';
 import 'package:aspire_arc/pages/online_courses.dart';
 import 'package:aspire_arc/pages/onln_courses/programming.dart';
-import 'package:aspire_arc/pages/profile/profilepage.dart';
-import 'package:aspire_arc/resume%20templates/form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aspire_arc/firebase_options.dart';
@@ -14,7 +13,7 @@ import 'package:aspire_arc/pages/get_started.dart';
 import 'package:aspire_arc/pages/home_page.dart';
 import 'package:aspire_arc/pages/login_page.dart';
 import 'package:aspire_arc/pages/sign_up.dart';
-import 'package:aspire_arc/pages/resumes/form.dart';
+
 
 import 'pages/prevhome.dart';
 void main() async {
@@ -43,11 +42,7 @@ class MyApp extends StatelessWidget {
         '/onlinecourses':(context) => const OnlineCourses(),
         '/prevhome':(context) => const Prevhome(),
       },
-<<<<<<< HEAD
-      home: FormUI(),
-=======
-      home: FormScreen(),
->>>>>>> 3da28cfce49c4d3e02337fe9224923aa5c2a0dc1
+      home: ATSPage(),
     );
   }
 }
